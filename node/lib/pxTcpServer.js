@@ -9,21 +9,24 @@
 var socketio = require('socket.io');
 
 
-var packets =[
+var default_packets =[
 	/**
 	 * default packet
 	 * example fn --> fn(csocket, ssocket, msg)
 	 */
 	{id:'disconnect', 	fn: disConnect 			}
 ];
+var packets = null;
 var io = null;
 var pcu = 0;
-exports.packets = packets;
 exports.io = null;
 exports.pcu = pcu;
 
-exports.init = function(server){
+exports.init = function(server, subpackets){
 	io = socketio.listen(server);
+
+	packets = default_packets.concat(subpackets);
+
 	io.on('connection', function(csocket){
 		console.log('[cnt:' + (++pcu) + ']user connected:' + csocket.id);
 
@@ -33,9 +36,9 @@ exports.init = function(server){
 			});
 		});
 	});
-}
+};
 
-function disConnect(csocket, ssocket, msg) {
+function disConnect(csocket, ignore, msg) {
 	console.log('user disconnected :' + csocket.id + '[cnt:' + --pcu + ']');
 	console.log('[msg:' + msg + ']');
 }

@@ -10,12 +10,14 @@ var packets = [
 	{id:'chat_msg',		fn: sendBroadMessage	}
 ];
 
-chatserver.packets.concat(packets);
+exports.init = function(server){
+	chatserver.packets = packets.concat(chatserver.packets);
+	chatserver.init(server, packets);
+};
 
-function sendBroadMessage(csocket, ssocket, msg){
-	console.log('message: ' + msg);
-	ssocket.emit('message', msg);
+function sendBroadMessage(ignore, ssocket, msg){
+	console.log('chat_msg: ' + msg);
+	ssocket.emit('chat_msg', msg);
 }
 
 
-module.exports = chatserver;
