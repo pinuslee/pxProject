@@ -1,0 +1,69 @@
+//
+   Created by pinus on 16. 7. 15.
+
+extends layout
+
+block pxboard_content
+  script.
+    function fn_onSubmit() {
+      if ($("#title").val().trim() == "") {
+        var message = "제목을 입력해 주세요";
+        $("#title").val("");
+        $("#title").focus();
+        alert(message);
+        return false;
+      }
+
+      if ($("#content").val().trim() == "") {
+        var message = "본문 내용을 입력해 주세요";
+        $("#content").val("");
+        $("#content").focus();
+        alert(message);
+        return false;
+      }
+
+      if ($("#password").val().trim() == "") {
+        var message = "패스워드를 입력해 주세요";
+        $("#password").val("");
+        $("#password").focus();
+        alert(message);
+        return false;
+      }
+    }
+    function onModify(num) {
+      location.href ="/pxboard/#{info.boardID}/password/?moreA=modify&num=" + num;
+    }
+
+    function onDelete(num) {
+      location.href ="/pxboard/#{info.boardID}/password/?moreA=delete&num=" + num;
+    }
+
+  form(action='/pxboard/' method='post' onsubmit="return fn_onSubmit()")
+    input(type='hidden' name='id' value='#{info.boardID}' )
+    input(type='hidden' name='action' value='#{action.mode}' )
+    input(type='hidden' name='num' value='#{action.doc.num}')
+    table.pxboard_table2
+      tr.pxboard-write-tr
+        td(width=80 align='center') 제 목
+        td(width=470 align='center')
+          input(type='text' name='title' style='width:95%;' value="#{action.doc.title}" size=55 required=true readonly=action.readonly)
+      tr.pxboard-write-tr2
+        td(align='center') 내 용
+        td(align='center')
+          textarea(name='content' rows=15 cols=65 required=true readonly=action.readonly).pxboard-textarea=action.doc.content
+        - if (info.action!=='view'){
+          tr.pxboard-write-tr
+            td(align='center') 패스워드
+            td(align='left') &nbsp;
+              input(type='password' name='password' size=8 required=true)
+          tr.pxboard-write-tr3
+            td(colspan=2 align='right')
+              button(type='submit' style='cursor:pointer') 저 장
+        - }else{
+        tr.pxboard-write-tr3
+          td(colspan=2 align='right')
+            button(type='button' style='cursor:pointer' onclick='onModify("#{action.doc.num}")') 수 정
+            | &nbsp;&nbsp;
+            button(type='button' style='cursor:pointer' onclick='onDelete("#{action.doc.num}")') 삭 제
+        - }
+

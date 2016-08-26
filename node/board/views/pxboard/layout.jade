@@ -1,0 +1,13 @@
+extends ../layout
+
+block title_content
+  link(rel='stylesheet', href='/css/pxboard.css')
+
+block body_content
+  table.pxboard_table
+    tr
+      td
+        h1
+          a(href='/pxboard/#{info.boardID}').pxboard-title-a= info.name
+  block pxboard_content
+

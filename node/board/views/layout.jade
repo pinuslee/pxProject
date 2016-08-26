@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Pinus Workspace Home
+    link(rel='stylesheet', href='/css/style.css')
+    block title_content
+  body
+    table(border=1).table_center_all_100
+      tr(height="90%")
+        td
+          table(border=0).table_center_all_100
+            tr
+              td(valign="top" align="center").layout-td
+                block body_content

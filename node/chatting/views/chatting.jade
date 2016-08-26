@@ -1,0 +1,90 @@
+//
+   Created by pinus on 16. 8. 12.
+
+extends layout
+
+
+block content
+  style.
+    .table-chatting{
+      background: whitesmoke;
+      width: 600px;
+      height: 480px;
+    }
+    .td-msg{
+      height:450px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #messages li {
+      padding: 5px 10px;
+      line-height: 20px;
+    }
+
+    #messages li:nth-child(odd) {
+      background: #eee;
+    }
+    #msg {
+      border: 0;
+      width: 96%;
+    }
+
+
+  form(action='')
+    table.table-chatting
+      tr
+        td.td-msg(colspan=2)
+          ul#messages
+      tr
+        td(width=520)
+          input#msg(autocomplete='off')
+        td(width=80)
+          button Send
+
+  script.
+    var arrMessage = [];
+    var maxCount=15;
+    var socket = io.connect('http://pinus.com:1400');
+    function init(){
+      for(var i=0; i < maxCount ; i++){
+        arrMessage.push('');
+      }
+      display();
+    }
+    init();
+
+    $('form').submit(function(){
+      var strTemp = $('#msg').val();
+      if(strTemp.trim().length > 0)
+        socket.emit('chat_msg', $('#msg').val());
+      $('#msg').val('');
+      return false;
+    });
+
+    socket.on('chat_msg', function(msg){
+      pushMessage(msg);
+      display();
+    });
+
+    function pushMessage(msg) {
+      if (arrMessage.length < maxCount) {
+        arrMessage.push(msg);
+      } else {
+        arrMessage.shift();
+        arrMessage.push(msg);
+      }
+    }
+    function display() {
+      $('#messages').empty();
+      for(var i=0; i < arrMessage.length ; i++){
+        if(arrMessage[i].length == 0)
+          $('#messages').append('<li>&nbsp;</li>');
+        else
+          $('#messages').append($('<li>').text(arrMessage[i]));
+      }
+    }

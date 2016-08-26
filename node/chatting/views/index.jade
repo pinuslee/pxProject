@@ -1,0 +1,52 @@
+extends layout
+
+block content
+  div.div_room
+    h1= title
+    div.div_login
+      div.div_username
+        input#username.input_username(value='대 화 명')
+        button#butEnter.button_username 접속하기
+      div.div_usercount
+        b 접속자 수: &nbsp;
+          span#usercount 0
+          | 명
+    div#notconnect.div_chatform2
+      br
+      br
+      br
+      p(align='center') 대화명을 입력 후 접속해 주세요.
+    div#connect.div_chatform1
+      div.div_chatlist
+        ul#chatlist
+      div.div_userlist
+        ul#userlist
+      div.div_input
+        input#message.input_msg
+      div.div_button
+        button#btnSend.button_username &nbsp; Send &nbsp;
+        button#btnExit.button_username &nbsp; &nbsp;Exit&nbsp; &nbsp;
+    div.div_copyright
+      | COPYRIGHT© 2017 BY Pinus COPYRIGHT COMMISSION. ALL RIGHTS RESERVED.
+
+  script.
+    //init network setting
+    var socket = io.connect('http://pinus.com:1400');
+
+    // init form values
+    $('#notconnect').hide();
+
+    $('#username')
+            .click(function () {
+              if ($('#username').val() == '대 화 명')
+                $('#username').val('');
+            })
+            .focusout(function () {
+              if ($('#username').val().length == 0)
+                $('#username').val('대 화 명');
+            });
+    //network event
+    $('#butEnter').click(function () {
+      alert('username: ' + $('#username').val());
+    });
+

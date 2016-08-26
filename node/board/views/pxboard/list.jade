@@ -1,0 +1,52 @@
+//
+   Created by pinus on 16. 7. 11.
+
+extends layout
+
+block pxboard_content
+  script.
+    function fn_write(){
+      location.href ="/pxboard/#{info.boardID}/write";
+    }
+    function onView(num){
+      location.href ="/pxboard/#{info.boardID}/view/?num=" + num;
+    }
+
+  table.pxboard_table
+    tr.pxboard-list-title-tr
+      td.pxboard-list-num-td 번 호
+      td.pxboard-list-content-td 제 목
+      td.pxboard-list-writer-td 글 쓴 이
+      td.pxboard-list-date-td 날 짜
+    tr
+      td(colspan=4)
+        - var len = list.length;
+        - var item = null;
+        - var _bgcolor = '#cdecfa';
+        - if(len==0){
+        table.pxboard_table2
+          tr(bgcolor='#{_bgcolor}')
+            td(align='center') 내용이 없습니다.
+        - } else {
+        table.pxboard_table2
+          - for(var i=0; i <len; i++){
+          -   item = list[i];
+          -   if(i%2==0){ _bgcolor='#cce1ff'; } else { _bgcolor='#cdecfa'; }
+          tr(bgcolor='#{_bgcolor}'
+          onmouseover="this.style.backgroundColor='#becdff'"
+          onmouseout="this.style.backgroundColor='#{_bgcolor}'"
+          onClick="onView('#{item.num}')"
+          ).pxboard-list-tr
+            td.pxboard-list-num-td #{ item.num }
+            td.pxboard-list-content-td &nbsp; #{ item.title }
+            td.pxboard-list-writer-td &nbsp; #{ item.writer }
+            td.pxboard-list-date-td #{ item.date.format('yyyy-mm-dd') }
+          - }
+        - }
+
+    tr.pxboard-list-page-tr
+      td(colspan=4 align="center")
+        include paging
+    tr.pxboard-list-write-tr
+      td(colspan=4 align="right")
+        button(onclick="fn_write()" style='cursor:pointer') 글쓰기

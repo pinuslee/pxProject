@@ -1,0 +1,35 @@
+//
+   Created by pinus on 16. 7. 19.
+
+table(width='60%' align='center')
+  tr.pxboard-paging-tr
+    td(align='right')
+      - if( page.curPage > page.pageSize ) {
+      |[
+      a(href='/pxboard/#{info.boardID}/list/1').pxboard-a ◀◀
+      |][
+      a(href='/pxboard/#{info.boardID}/list/#{(page.startPage-1)}').pxboard-a ◀
+      |]
+      - } else {
+      |[◀◀][◀]
+      - }
+    td(align='center')
+      - for( var i=page.startPage; i<=page.endPage; i++){
+      -   if(i==page.curPage){
+      |[#{i}]
+      -   } else {
+      |[
+      a(href='/pxboard/#{info.boardID}/list/#{i}').pxboard-a #{i}
+      |]
+      -   }
+      - }
+    td(align='left')
+      - if( page.endPage < page.totalPage ) {
+      |[
+      a(href='/pxboard/#{info.boardID}/list/#{(page.endPage+1)}').pxboard-a ▶
+      |][
+      a(href='/pxboard/#{info.boardID}/list/#{page.totalPage}').pxboard-a ▶▶
+      |]
+      - } else {
+      |[▶][▶▶]
+      - }

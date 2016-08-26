@@ -1,0 +1,134 @@
+/** 2013.05.29 by stone, stoneis.pe.kr */
+body {
+	margin: 0px;
+	font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+	font-size: 15pt;
+	color: black;
+	margin: 10px;
+	margin-left: 5px;
+}
+.div_room {
+	width: 602px;
+	height: 410px;
+	background-color: azure;
+	padding: 5px;
+	padding-top: 1px;
+}
+
+.div_content {
+	width: 600px;
+	height: 343px;
+	border: 0px solid black;
+	background-color: cornflowerblue;
+}
+
+.div_login {
+	width: 598px;
+	height: 50px;
+	background-color: #bce8f1;
+	position: relative;
+	border: 1px solid black;
+}
+
+.div_chatform1 {
+	width: 600px;
+	height: 300px;
+	background-color: #dff0f1;
+	border: 0px solid black;
+}
+.div_chatform2 {
+	width: 594px;
+	height: 300px;
+	margin: 2px;
+	background-color: #dff0f1;
+	border: 1px solid black;
+}
+
+.div_username {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	width: 200px;
+	height: 32px;
+	background-color: deepskyblue;
+	text-align: center;
+	border: 1px solid black;
+}
+.input_username {
+	width: 120px;
+	height: 17px;
+	margin: 4px;
+	color: gray;
+	padding: 2px;
+	border: 1px solid darkslateblue;
+}
+.button_username{
+	cursor: hand;
+	background: #d6e9c6;
+	margin: 4px;
+	border: 1px solid darkslateblue;
+	padding: 3px;
+	margin-left: 0px;
+}
+
+.div_usercount {
+	font-size: 10pt;
+	position: absolute;
+	width: 100px;
+	height: 30px;
+	left: 470px;
+	top: 17px;
+}
+.div_chatlist {
+	width: 440px;
+	float: left;
+	color: #242424;
+	border: 1px solid black;
+	padding: 5px;
+	line-height: 120%;
+	height: 250px;
+	overflow: auto;
+	margin-top: 1px;
+}
+.div_userlist {
+	margin: 1px;
+	width: 144px;
+	height: 260px;
+	background-color: #FDFCDC;
+	border: 1px solid black;
+	position: absolute;
+	left: 458px;
+
+}
+.div_input {
+	width: 450px;
+	height: 30px;
+	float: left;
+	margin-top: 1px;
+	background-color: #cccccc;
+	border: 1px solid black;
+	text-align: center;
+}
+.input_msg {
+	width: 95%;
+	height: 15px;
+	margin: 5px;
+	color: gray;
+}
+.div_button {
+	margin: 1px;
+	width: 144px;
+	height: 30px;
+	background-color: #FDFCDC;
+	border: 1px solid black;
+	position: absolute;
+	left: 458px;
+	top: 360px;
+	text-align: center;
+}
+.div_copyright {
+	text-align: center;
+}
