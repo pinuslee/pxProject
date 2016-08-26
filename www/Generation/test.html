@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        canvas { border: 1px solid black; }
+    </style>
+    <script src="script/px2DModule.js"></script>
+    <script src="script/pxMath.js"></script>
+    <script type="application/javascript">
+        var arrayPos = [];
+        var canvas = null;
+        function onLoad() {
+            canvas = document.getElementById('canvasWorld');
+            for (var i = 0; i < 100; i++) {
+                var pos = {x: 0, y: 0};
+                pos.x = pxMath.random(10, canvas.width - 10);
+                pos.y = pxMath.random(10, canvas.height - 10);
+                arrayPos.push(pos);
+            }
+            px2DModule.init(canvas);
+        }
+
+        function OnDraw() {
+            px2DModule.clear(canvas);
+            for (obj of arrayPos) {
+                px2DModule.drawCircle(obj.x, obj.y, 5, 'rgba(255,0,255,0.5)');
+            }
+        }
+        function OnMove() {
+            var v = [
+                {x: 0, y:0},
+                {x: -5, y:-5},
+                {x: 5, y:5},
+                {x: 0, y:-5},
+                {x: -5, y:0},
+                {x: 5, y:0},
+                {x: 0, y:5}
+            ];
+            for (obj of arrayPos) {
+                var moveFlag = pxMath.random(v.length)-1;
+                obj.x += v[moveFlag].x;
+                obj.y += v[moveFlag].y;
+            }
+            OnDraw();
+        }
+    </script>
+</head>
+<body onload="onLoad()">
+<canvas id="canvasWorld" width="600" height="600"></canvas>
+<br>
+<button onclick="startColor()">Start</button>
+<button onclick="stopColor()">Stop</button>
+<script>
+    var myVar=null;
+
+    function setColor() {
+        var x = document.body;
+        x.style.backgroundColor = x.style.backgroundColor == "yellow" ? "pink" : "yellow";
+    }
+
+    function startColor() {
+        if(myVar===null)
+            myVar= setInterval(function(){ OnMove(); }, 1000);
+    }
+
+    function stopColor() {
+        clearInterval(myVar);
+        myVar=null;
+    }
+</script>
+
+</body>
+</html>
+

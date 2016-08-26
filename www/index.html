@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet", href="http://pinus.ml:1300/stylesheets/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+        function onChangeURL(url){
+            document.getElementById('main').src = url;
+        }
+    </script>
+</head>
+<body>
+    <table class="table_center_all_100" border="0">
+        <tr hegiht="80">
+            <td>
+                <table border="0" bgcolor="#12124B" class="table_center_all_100">
+                    <tr height="50">
+                        <td colspan="2">
+                            <a href="/" class="layout-top-title-a">Pinus Workspace Home</a>
+                        </td>
+                    </tr>
+                    <tr height="30">
+                        <td align="right">
+                            <a href="javascript:onChangeURL('http://pinus.ml:1300/pxboard/1')" class="layout-top-menu-a">게시판 </a>
+                            <a href="javascript:onChangeURL('/darkroom/')" class="layout-top-menu-a">darkroom </a>
+                            &nbsp; &nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="100%">
+            <td bgcolor="#f0ffff">
+                <iframe frameborder="0" scrolling="no" board=0 name="main" id="main" src="main.html" class="table_center_all_100"></iframe>
+            </td>
+        </tr>
+        <tr height="30">
+            <td>
+                <table border="0" class="layout-bottom-table">
+                    <tr height="30">
+                        <td align="center" class="layout-bottom-text">
+                            COPYRIGHT© 2017 BY Pinus COPYRIGHT COMMISSION. ALL RIGHTS RESERVED.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
